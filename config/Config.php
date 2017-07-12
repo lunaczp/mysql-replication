@@ -8,11 +8,11 @@
 class Config {
 
     public static $DB_CONFIG = array(
-			'username' => 'root',
+			'username' => 'test',
 			'host'     => '127.0.0.1',
-			'port'     => '3307',
-			'password' => '123456',
-			'db_name'  => 'zzq'
+			'port'     => '3306',
+			'password' => 'test',
+			'db_name'  => 'test'
 	);
 
     // 默认100次mysql dml操作记录一次 pos，filename到文件
