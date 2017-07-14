@@ -322,6 +322,7 @@ class Connect {
      */
     private static function _writeRegisterSlaveCommand() {
         $header   = pack('l', 18);
+        //zhp:todo not follow
 
         // COM_BINLOG_DUMP
         $data  = $header . chr(ConstCommand::COM_REGISTER_SLAVE);
