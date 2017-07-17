@@ -61,6 +61,9 @@ class BinLogPack {
         $data = [];
 
 
+        if (DEBUG) {
+            echo 't:' . self::$EVENT_TYPE . PHP_EOL;
+        }
         // 映射fileds相关信息
         if (self::$EVENT_TYPE == ConstEventType::TABLE_MAP_EVENT) {
             RowEvent::tableMap(self::getInstance(), self::$EVENT_TYPE);
@@ -82,7 +85,8 @@ class BinLogPack {
         }elseif(self::$EVENT_TYPE == ConstEventType::GTID_LOG_EVENT) {
             //gtid event
 
-        }elseif(self::$EVENT_TYPE == 15) {
+        }elseif(self::$EVENT_TYPE == ConstEventType::FORMAT_DESCRIPTION_EVENT) {
+            $t = 1;//todo decode
             //$pack = self::getInstance();
 
             //$pack->read(4);
