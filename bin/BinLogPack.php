@@ -38,7 +38,6 @@ class BinLogPack {
             self::$_instance = new self();
         }
 
-        //
         self::$_PACK       = $pack;
         self::$_PACK_KEY   = 0;
         self::$EVENT_INFO  = [];
@@ -62,8 +61,12 @@ class BinLogPack {
 
 
         if (DEBUG) {
-            echo 't:' . self::$EVENT_TYPE . PHP_EOL;
+            echo 'pack:' .bin2hex($pack).PHP_EOL;
         }
+        if (DEBUG) {
+            echo 'eventType: ' . self::$EVENT_TYPE . PHP_EOL;
+        }
+        
         // 映射fileds相关信息
         if (self::$EVENT_TYPE == ConstEventType::TABLE_MAP_EVENT) {
             RowEvent::tableMap(self::getInstance(), self::$EVENT_TYPE);
@@ -118,6 +121,11 @@ class BinLogPack {
         }
 
         self::$_PACK_KEY += $length;
+        if (DEBUG) {
+            echo 'pack: ' .bin2hex(self::$_PACK) .PHP_EOL;
+            echo 'packKey: ' .self::$_PACK_KEY .PHP_EOL;
+            echo 'packLeft: '. bin2hex(substr(self::$_PACK, self::$_PACK_KEY)) .PHP_EOL;
+        }
 
         return $n;
 

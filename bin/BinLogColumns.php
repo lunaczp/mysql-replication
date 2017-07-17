@@ -22,8 +22,9 @@ class BinLogColumns {
         self::$field['type_is_bool'] = false;
         self::$field['is_primary'] = $column_schema["COLUMN_KEY"] == "PRI";
 
+        //todo zhp: do we have all the type here?
         if (self::$field['type'] == ConstFieldType::VARCHAR) {
-            self::$field['max_length'] = unpack('s', $packet->read(2))[1];
+            self::$field['max_length'] = unpack('s', $packet->read(2))[1];//todo: zhp correct?
         }elseif (self::$field['type'] == ConstFieldType::DOUBLE){
             self::$field['size'] = $packet->readUint8();
         }elseif (self::$field['type'] == ConstFieldType::FLOAT){
@@ -46,6 +47,9 @@ class BinLogColumns {
             self::$field['precision'] = $packet->readUint8();
             self::$field['decimals'] = $packet->readUint8();
         }elseif (self::$field['type'] == ConstFieldType::BIT) {
+            //todo zhp: does this correct?
+            //https://dev.mysql.com/doc/internals/en/event-data-for-specific-event-types.html
+            //TABLE_MAP_EVENT
             $bits = $packet->readUint8();
             $bytes = $packet->readUint8();
             self::$field['bits'] = ($bytes * 8) + $bits;

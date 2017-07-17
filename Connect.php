@@ -283,6 +283,11 @@ class Connect {
      */
     public static function analysisBinLog($flag = false) {
 
+        if (DEBUG) {
+            static $event_index = 0;
+            echo 'newEvent: ' .++$event_index .PHP_EOL;
+        }
+        
         $pack   = self::_readPacket();
 
         // 校验数据包格式
