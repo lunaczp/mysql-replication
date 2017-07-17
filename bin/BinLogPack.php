@@ -43,6 +43,8 @@ class BinLogPack {
         self::$_PACK_KEY   = 0;
         self::$EVENT_INFO  = [];
 
+        //http://dev.mysql.com:80/doc/internals/en/binlog-network-stream.html
+        //Network streams are requested with COM_BINLOG_DUMP and prepend each Binlog Event with 00 OK-byte
         $this->advance(1);
 
         self::$EVENT_INFO['time'] = $timestamp  = unpack('L', $this->read(4))[1];
