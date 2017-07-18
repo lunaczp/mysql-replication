@@ -210,8 +210,9 @@ class RowEvent extends BinLogEvent
             $unsigned = $value['unsigned'];
 
 
+            //没有使用
             if (self::BitGet($cols_bitmap, $i) == 0) {
-                $values[$name] = null;
+                $values[$name] = null;//todo zhp: set null ok ？
                 continue;
             }
 
